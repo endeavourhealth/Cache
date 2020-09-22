@@ -26,9 +26,12 @@ public abstract class GenericCache<ObjectType> implements ICache {
         return object;
     }
 
-    public void push(ObjectType object) {
-        if (isValid(object))
-            _cache.push(object);
+    public boolean push(ObjectType object) {
+        if (!isValid(object))
+            return false;
+
+        _cache.push(object);
+        return true;
     }
 
     protected boolean isValid(ObjectType object) { return true; }
